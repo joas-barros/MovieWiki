@@ -1,5 +1,7 @@
 package ufersa.omdbapi.model;
 
+import ufersa.omdbapi.service.Buscar;
+
 import java.util.*;
 
 public class Serie {
@@ -24,6 +26,7 @@ public class Serie {
     private String tipo;
     private Integer quantidadeTemporadas;
     private List<Episodio> episodios;
+    private final Buscar bs = new Buscar();
 
     public Serie(RecordSerie serie) {
         this.titulo = serie.titulo();
@@ -37,20 +40,21 @@ public class Serie {
             this.duracaoEpisodio = null;
         else
             this.duracaoEpisodio = OptionalInt.of(Integer.valueOf(serie.duracaoEpisodio().split(" ")[0])).orElse(-1);
-        this.generos = Categoria.fromString(serie.genero());
-        this.diretores = serie.diretor().split(",");
+        this.generos = serie.genero().equals("N/A") ? null : Categoria.fromString(serie.genero());
+        this.diretores = serie.diretor().equals("N/A") ? null : serie.diretor().split(",");
         this.roteiristas = serie.roteirista().split(",");
-        this.atores = serie.atores().split(",");
-        this.sinopse = serie.sinopse();
-        this.idiomas = serie.idiomas().split(",");
-        this.paises = serie.paises().split(",");
-        this.premios = serie.premios();
-        this.poster = serie.poster();
+        this.atores = serie.atores().equals("N/A") ? null : serie.atores().split(",");
+        this.sinopse = serie.sinopse().equals("N/A") ? null :  serie.sinopse();
+        this.idiomas = serie.idiomas().equals("N/A") ? null : serie.idiomas().split(",");
+        this.paises = serie.paises().equals("N/A") ? null : serie.paises().split(",");
+        this.premios = serie.premios().equals("N/A") ? null : serie.premios();
+        this.poster = serie.poster().equals("N/A") ? null : serie.poster();
         this.avaliacaoImdb = OptionalDouble.of(Double.valueOf(serie.avaliacaoImdb())).orElse(-1);
         this.votosImdb = Integer.valueOf(serie.votosImdb().replaceAll(",", ""));
         this.idImdb = serie.idImdb();
         this.tipo = serie.tipo();
         this.quantidadeTemporadas = Integer.valueOf(serie.quantidadeTemporadas());
+        this.episodios = bs.buscarEpisodio(titulo, quantidadeTemporadas);
     }
 
     public String getTitulo() {
@@ -213,11 +217,19 @@ public class Serie {
         this.quantidadeTemporadas = quantidadeTemporadas;
     }
 
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
+
     @Override
     public String toString() {
         return "titulo: " + titulo + "\n" +
                 ", anoLancamento: " + anoLancamento + "\n" +
-                ", anoFinal: " + anoFinal + "\n" +
+                ", anoFinal: " + (anoFinal== null ? "Em exibição" : anoFinal) + "\n" +
                 ", classificacaoIndicativa: " + classificacaoIndicativa + "\n" +
                 ", dataLancamento: " + Arrays.toString(dataLancamento) + "\n" +
                 ", duracaoEpisodio: " + duracaoEpisodio + " minutos" + "\n" +

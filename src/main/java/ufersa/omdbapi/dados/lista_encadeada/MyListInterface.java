@@ -1,4 +1,4 @@
-package unidade2.lista_encadeada;
+package ufersa.omdbapi.dados.lista_encadeada;
 
 public interface MyListInterface <E>{
     void addFirst(E value);

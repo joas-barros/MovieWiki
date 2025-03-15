@@ -23,5 +23,6 @@ public record RecordFilme(@JsonAlias("Title")String titulo,
                           @JsonAlias("imdbVotes") String votosImdb,
                           @JsonAlias("imdbID") String idImdb,
                           @JsonAlias("Type") String tipo,
-                          @JsonAlias("BoxOffice") String faturamento) {
+                          @JsonAlias("BoxOffice") String faturamento,
+                          @JsonAlias("Response") String resposta) {
 }

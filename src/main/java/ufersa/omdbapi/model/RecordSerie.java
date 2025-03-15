@@ -22,5 +22,6 @@ public record RecordSerie(@JsonAlias("Title")String titulo,
                           @JsonAlias("imdbVotes") String votosImdb,
                           @JsonAlias("imdbID") String idImdb,
                           @JsonAlias("Type") String tipo,
-                          @JsonAlias("totalSeasons") String quantidadeTemporadas) {
+                          @JsonAlias("totalSeasons") String quantidadeTemporadas,
+                          @JsonAlias("Responde") String resposta) {
 }

@@ -1,4 +1,4 @@
-package unidade2.fila;
+package ufersa.omdbapi.dados.fila;
 
 public class PlayGround {
     public static void main(String[] args) {

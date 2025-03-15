@@ -6,6 +6,7 @@ public class Episodio {
     private String titulo;
     private Integer anoLancamento;
     private String classificacaoIndicativa;
+    private String[] dataLancamento;
     private Integer numeroTemporada;
     private Integer numeroEpisodio;
     private Integer duracao;
@@ -24,25 +25,26 @@ public class Episodio {
     private String tipo;
 
     public Episodio(RecordEpisodio episodio) {
-        this.titulo = episodio.titulo();
-        this.anoLancamento = episodio.anoLancamento();
-        this.classificacaoIndicativa = episodio.classificacaoIndicativa();
-        this.numeroTemporada = episodio.numeroTemporada();
-        this.numeroEpisodio = episodio.numeroEpisodio();
-        this.duracao = OptionalInt.of(Integer.valueOf(episodio.tempoExibicao().split(" ")[0])).orElse(-1);
-        this.generos = Categoria.fromString(episodio.genero());
-        this.diretores = new ArrayList<>(List.of(episodio.diretor().replaceAll(" ","").split(",")));
-        this.roteiristas = episodio.roteirista().replaceAll(" ","").split(",");
-        this.atores = episodio.ator().replaceAll(" ","").split(",");
-        this.sinopse = episodio.sinopse();
-        this.idiomas = new ArrayList<>(Arrays.asList(episodio.idioma()));
-        this.paises = new ArrayList<>(Arrays.asList(episodio.pais()));
-        this.poster = episodio.poster();
-        this.avaliacaoImdb = episodio.avaliacaoImdb();
-        this.votosImdb = episodio.votosImdb();
-        this.imdbId = episodio.idImdb();
-        this.idSerie = episodio.idSerie();
-        this.tipo = episodio.tipo();
+        this.titulo = episodio.titulo().equals("N/A") ? null : episodio.titulo();
+        this.anoLancamento = episodio.anoLancamento().equals("N/A") ? null : episodio.anoLancamento();
+        this.classificacaoIndicativa = episodio.classificacaoIndicativa().equals("N/A") ? null : episodio.classificacaoIndicativa();
+        this.dataLancamento = episodio.anoLancamento().equals("N/A") ? null : episodio.dataLancamento().replaceAll(" ", "").split(",");
+        this.numeroTemporada = episodio.numeroTemporada().equals("N/A") ? null : episodio.numeroTemporada();
+        this.numeroEpisodio = episodio.numeroEpisodio().equals("N/A") ? null : episodio.numeroEpisodio();
+        this.duracao = episodio.tempoExibicao().equals("N/A") ? null : Integer.valueOf(episodio.tempoExibicao().split(" ")[0]);
+        this.generos = episodio.genero().equals("N/A") ? null :  Categoria.fromString(episodio.genero());
+        this.diretores = episodio.diretor().equals("N/A") ? null : new ArrayList<>(List.of(episodio.diretor().replaceAll(" ","").split(",")));
+        this.roteiristas = episodio.roteirista().equals("N/A") ? null : episodio.roteirista().replaceAll(" ","").split(",");
+        this.atores = episodio.ator().equals("N/A") ? null : episodio.ator().replaceAll(" ","").split(",");
+        this.sinopse = episodio.sinopse().equals("N/A") ? null : episodio.sinopse();
+        this.idiomas = episodio.idioma().equals("N/A") ? null :  new ArrayList<>(Arrays.asList(episodio.idioma()));
+        this.paises = episodio.pais().equals("N/A") ? null : new ArrayList<>(Arrays.asList(episodio.pais()));
+        this.poster = episodio.poster().equals("N/A") ? null : episodio.poster();
+        this.avaliacaoImdb = episodio.avaliacaoImdb().equals("N/A") ? null : Double.valueOf(episodio.avaliacaoImdb());
+        this.votosImdb = episodio.votosImdb().equals("N/A") ? null : Integer.valueOf(episodio.votosImdb());
+        this.imdbId = episodio.idImdb().equals("N/A") ? null : episodio.idImdb();
+        this.idSerie = episodio.idSerie().equals("N/A") ? null : episodio.idSerie();
+        this.tipo = episodio.tipo().equals("N/A") ? null : episodio.tipo();
     }
 
     public String getTitulo() {

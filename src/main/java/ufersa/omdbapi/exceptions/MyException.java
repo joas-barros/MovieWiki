@@ -1,4 +1,4 @@
-package unidade2.exceptions;
+package ufersa.omdbapi.exceptions;
 
 public class MyException extends RuntimeException {
     public MyException(String message) {

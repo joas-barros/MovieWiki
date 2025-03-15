@@ -1,9 +1,8 @@
-package unidade2.pilha;
+package ufersa.omdbapi.dados.pilha;
 
-import unidade2.exceptions.MyException;
-import unidade2.lista_encadeada.DoubleList;
-import unidade2.lista_encadeada.MyListInterface;
-import unidade2.lista_encadeada.SinglyList;
+import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
+import ufersa.omdbapi.dados.lista_encadeada.MyListInterface;
+import ufersa.omdbapi.exceptions.MyException;
 
 public class MyStackLinkedList <T> implements StackInterface<T>{
 

@@ -1,6 +1,6 @@
-package unidade2.pilha;
+package ufersa.omdbapi.dados.pilha;
 
-import unidade2.exceptions.MyException;
+import ufersa.omdbapi.exceptions.MyException;
 
 public interface StackInterface <T>{
     void push(T number) throws MyException; 	// empilhar

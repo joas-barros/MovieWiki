@@ -1,6 +1,7 @@
-package unidade2.lista_encadeada;
+package ufersa.omdbapi.dados.lista_encadeada;
 
-import unidade2.exceptions.MyException;
+
+import ufersa.omdbapi.exceptions.MyException;
 
 public class SinglyList <T> implements MyListInterface<T>{
 

@@ -1,6 +1,6 @@
-package unidade2.fila;
+package ufersa.omdbapi.dados.fila;
 
-import unidade2.exceptions.MyException;
+import ufersa.omdbapi.exceptions.MyException;
 
 public interface QueueInterface <T>{
     void add(T number) throws MyException;

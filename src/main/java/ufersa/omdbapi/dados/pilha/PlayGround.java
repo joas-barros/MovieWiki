@@ -1,4 +1,4 @@
-package unidade2.pilha;
+package ufersa.omdbapi.dados.pilha;
 
 public class PlayGround {
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
-package unidade2.fila;
+package ufersa.omdbapi.dados.fila;
 
-import unidade2.exceptions.MyException;
+
+import ufersa.omdbapi.exceptions.MyException;
 
 public class MyQueue<T> implements QueueInterface<T>{
 
