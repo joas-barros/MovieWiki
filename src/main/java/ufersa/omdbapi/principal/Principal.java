@@ -1,32 +1,44 @@
 package ufersa.omdbapi.principal;
 
 import ufersa.omdbapi.dados.fila.MyQueueLinkedList;
+import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
+import ufersa.omdbapi.model.Episodio;
 import ufersa.omdbapi.model.Filme;
 import ufersa.omdbapi.model.Serie;
+import ufersa.omdbapi.search.Search;
 import ufersa.omdbapi.service.Buscar;
 import ufersa.omdbapi.service.Arquivos;
+import ufersa.omdbapi.sorting.Sorting;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Principal {
 
-    public static final String ENDERECO = "https://www.omdbapi.com/?t=";
-    public static final String API_KEY = "&apikey=bc5081ad";
     private final Buscar bs = new Buscar();
     Scanner scanner = new Scanner(System.in);
     private final Arquivos manipularArquivos = new Arquivos();
+    private final Sorting sorting = new Sorting();
+    private final Search search = new Search();
 
     public void exibeMenu(){
 
-        MyQueueLinkedList<Filme> listaFilmes = new MyQueueLinkedList<>();
+        MyQueueLinkedList<Filme> listaFilmes = manipularArquivos.lerFilmeBinario();
 
-        MyQueueLinkedList<Serie> listaSeries = new MyQueueLinkedList<>();
+        MyQueueLinkedList<Serie> listaSeries = manipularArquivos.lerSerieBinario();
 
         String menu =
                 """
                 1- Exibir Filme
                 2- Exibir série
-                6- sair
+                3- Listar Filmes
+                4- Listar Séries
+                5- Listar Episódios
+                6- Remover Filme
+                7- Remover Serie
+                8- Buscar Filme na lista
+                9- sair
                 """;
 
         int opcao;
@@ -56,21 +68,36 @@ public class Principal {
                     }
                     break;
                 case 3:
-                    listarEpisodiosSerie();
+                    exibirFilaExibicaoFilmes(listaFilmes);
                     break;
                 case 4:
-                    exibirFilaExibicaoFilmes();
+                    exibirFilaExibicaoSeries(listaSeries);
                     break;
-                //case 5: exibirFilaExibicaoSeries(); break;
+                case 5: listarEpisodiosSerie(); break;
+                case 6:
+                    if(listaFilmes.isEmpty())
+                        System.out.println("Lista vazia");
+                    else
+                        listaFilmes.remove();
+                    break;
+                case 7:
+                    if(listaSeries.isEmpty())
+                        System.out.println("Lista vazia");
+                    else
+                        listaSeries.remove();
+                    break;
+                case 8:
+                    checarLista(listaFilmes);
+                    break;
                 default:
-                    System.out.println("opcao invalida");
+                    System.out.println("Saindo...");
             }
-        }while(opcao != 6);
+        }while(opcao != 9);
 
-        manipularArquivos.escreverFilmeBinario(listaFilmes);
-
-        manipularArquivos.escreverFilmesTexto(listaFilmes);
+        manipularArquivos.escreverSerieBinario(listaSeries);
         manipularArquivos.escreverSerieTexto(listaSeries);
+        manipularArquivos.escreverFilmeBinario(listaFilmes);
+        manipularArquivos.escreverFilmesTexto(listaFilmes);
     }
 
     private Filme exibirFilme(MyQueueLinkedList listaFilmes) {
@@ -92,10 +119,63 @@ public class Principal {
     private void listarEpisodiosSerie() {
         System.out.print("Digite o nome do serie: ");
         String serie = scanner.nextLine();
-        System.out.println(bs.buscarEpisodiosDaSerie(serie).getEpisodios());
+
+        Serie s = bs.buscarEpisodiosDaSerie(serie);
+
+        DoubleList<Episodio> episodios = s.getEpisodios();
+
+        int tam = episodios.getSize();
+
+        Episodio[] eps = new Episodio[tam];
+
+        for(int i = 0; i < tam; i++) {
+            eps[i] = episodios.removeFirst();
+        }
+
+        sorting.quickSort(eps, Comparator.comparing(Episodio::getAvaliacaoImdb));
+
+        System.out.println(Arrays.toString(eps));
+
+        manipularArquivos.imprimirEpisodiosOrdenados(eps);
     }
 
-    private void exibirFilaExibicaoFilmes() {
+    private void exibirFilaExibicaoFilmes(MyQueueLinkedList<Filme> listaFilmes) {
+        listaFilmes.show();
+    }
+
+    private void exibirFilaExibicaoSeries(MyQueueLinkedList<Serie> listaSeries) {
+        listaSeries.show();
+    }
+
+    private void checarLista(MyQueueLinkedList<Filme> listaFilmes) {
+
+        System.out.print("Digite um filme para buscar na lista: ");
+        String leitura = scanner.nextLine();
+
+        Filme busca = bs.buscarFilme(leitura);
+
+        MyQueueLinkedList<Filme> filmes = listaFilmes;
+
+        DoubleList<Filme> f = new DoubleList<>();
+
+        while(!filmes.isEmpty()) {
+            f.addLast(filmes.remove());
+        }
+
+        Filme[] eps = new Filme[f.getSize()];
+
+        for(int i = 0; i < f.getSize(); i++) {
+            eps[i] = f.removeFirst();
+        }
+
+        int resposta = search.binarySearch(eps, busca);
+
+        if(resposta == -1) {
+            System.out.println("Filme não está na lista.");
+        }
+        else {
+            System.out.println("Filme já adicionado.");
+        }
 
     }
 }

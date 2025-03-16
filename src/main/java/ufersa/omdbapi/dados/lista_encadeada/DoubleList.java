@@ -6,6 +6,14 @@ import java.io.Serializable;
 
 public class DoubleList<T> implements MyListInterface<T>, Serializable {
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     class Node implements Serializable {
         private static final long serialVersionUID = 1L;
         T data;

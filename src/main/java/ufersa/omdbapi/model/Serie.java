@@ -3,9 +3,11 @@ package ufersa.omdbapi.model;
 import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
 import ufersa.omdbapi.service.Buscar;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Serie {
+public class Serie implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private Integer anoLancamento;
     private Integer anoFinal;
@@ -227,25 +229,24 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "titulo: " + titulo + "\n" +
-                ", anoLancamento: " + anoLancamento + "\n" +
-                ", anoFinal: " + (anoFinal== null ? "Em exibição" : anoFinal) + "\n" +
-                ", classificacaoIndicativa: " + classificacaoIndicativa + "\n" +
-                ", dataLancamento: " + Arrays.toString(dataLancamento) + "\n" +
-                ", duracaoEpisodio: " + duracaoEpisodio + " minutos" + "\n" +
-                ", generos: " + generos + "\n" +
-                ", diretores: " + Arrays.toString(diretores) + "\n" +
-                ", roteiristas: " + Arrays.toString(roteiristas) + "\n" +
-                ", atores: " + Arrays.toString(atores) + "\n" +
-                ", sinopse: " + sinopse +  "\n" +
-                ", idiomas: " + Arrays.toString(idiomas) + "\n" +
-                ", paises: " + Arrays.toString(paises) + "\n" +
-                ", premios: " + premios + "\n" +
-                ", poster: " + poster +  "\n" +
-                ", avaliacaoImdb: " + avaliacaoImdb + "\n" +
-                ", votosImdb: " + votosImdb + "\n" +
-                ", idImdb: " + idImdb +  "\n" +
-                ", tipo: " + tipo + "\n" +
-                ", quantidadeTemporadas: " + quantidadeTemporadas + "\n";
+        return  "Título: " + titulo + "\n" +
+                "Ano Lançamento: " + anoLancamento + "\n" +
+                "Ano Final: " + (anoFinal== null ? "Em exibição" : anoFinal) + "\n" +
+                "Classificação Indicativa: " + classificacaoIndicativa + "\n" +
+                "Data Lançamento: " + Arrays.toString(dataLancamento) + "\n" +
+                "Duração Episodio: " + duracaoEpisodio + " minutos" + "\n" +
+                "Quantidade Temporadas: " + quantidadeTemporadas + "\n" +
+                "Gêneros: " + generos + "\n" +
+                "Diretores: " + Arrays.toString(diretores) + "\n" +
+                "Roteiristas: " + Arrays.toString(roteiristas) + "\n" +
+                "Atores: " + Arrays.toString(atores) + "\n" +
+                "Sinopse: " + sinopse +  "\n" +
+                "Idiomas: " + Arrays.toString(idiomas) + "\n" +
+                "Países: " + Arrays.toString(paises) + "\n" +
+                "Prêmios: " + premios + "\n" +
+                "Poster: " + poster +  "\n" +
+                "Avaliação Imdb: " + avaliacaoImdb + "\n" +
+                "Votos Imdb: " + votosImdb + "\n" +
+                "Id Imdb: " + idImdb +  "\n";
     }
 }

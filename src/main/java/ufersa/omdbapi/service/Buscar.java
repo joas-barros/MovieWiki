@@ -1,13 +1,14 @@
 package ufersa.omdbapi.service;
 
 import ufersa.omdbapi.model.*;
-import ufersa.omdbapi.principal.Principal;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Buscar {
+    public static final String ENDERECO = "https://www.omdbapi.com/?t=";
+    public static final String API_KEY = "&apikey=bc5081ad";
     private static Scanner scanner = new Scanner(System.in);
     private static ConsumoApi consumoApi = new ConsumoApi();
     private static ConverteDados converteDados = new ConverteDados();
@@ -15,7 +16,7 @@ public class Buscar {
 
     public Filme buscarFilme(String nomeFilme) {
 
-        String json = consumoApi.getDados(Principal.ENDERECO + nomeFilme.replace(" ", "+") + Principal.API_KEY);
+        String json = consumoApi.getDados(ENDERECO + nomeFilme.replace(" ", "+") + API_KEY);
 
         RecordFilme dadosFilme = converteDados.getDados(json, RecordFilme.class);
 
@@ -23,7 +24,7 @@ public class Buscar {
     }
 
     public Serie buscarSerie(String nomeSerie) {
-        String json = consumoApi.getDados(Principal.ENDERECO + nomeSerie.replace(" ", "+") + Principal.API_KEY);
+        String json = consumoApi.getDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
 
         RecordSerie dadosSerie = converteDados.getDados(json, RecordSerie.class);
 
@@ -31,7 +32,7 @@ public class Buscar {
     }
 
     public Serie buscarEpisodiosDaSerie(String nomeSerie) {
-        String json = consumoApi.getDados(Principal.ENDERECO + nomeSerie.replace(" ", "+") + Principal.API_KEY);
+        String json = consumoApi.getDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
 
         RecordSerie dadosSerie = converteDados.getDados(json, RecordSerie.class);
 
@@ -60,10 +61,10 @@ public class Buscar {
         temporadas.forEach(t-> t.episodios()
                 .stream().filter(e-> e.ep() >0)
                 .forEach(e->{
-            String j = consumoApi.getDados("https://www.omdbapi.com/?i=" + e.id() + "&apikey=bc5081ad");
-            RecordEpisodio rE = converteDados.getDados(j, RecordEpisodio.class);
-            Episodio novoEp = new Episodio(rE);
-            episodios.add(novoEp);
+                String j = consumoApi.getDados("https://www.omdbapi.com/?i=" + e.id() + "&apikey=bc5081ad");
+                RecordEpisodio rE = converteDados.getDados(j, RecordEpisodio.class);
+                Episodio novoEp = new Episodio(rE);
+                episodios.add(novoEp);
         }));
 
         return episodios;

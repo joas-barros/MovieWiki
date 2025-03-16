@@ -216,26 +216,25 @@ public class Filme implements Serializable{
 
     @Override
     public String toString() {
-        return  "titulo: " + titulo + "\n" +
-                ", anoLancamento: " + anoLancamento + "\n" +
-                ", classificacaoIndicativa: " + classificacaoIndicativa + "\n" +
-                ", dataLancamento: " + Arrays.toString(dataLancamento) + "\n" +
-                ", duracao: " + duracaoEpisodio + " minutos" + "\n" +
-                ", generos: " + generos + "\n" +
-                ", diretores: " + Arrays.toString(diretores) + "\n" +
-                ", roteiristas: " + Arrays.toString(roteiristas) + "\n" +
-                ", atores: " + Arrays.toString(atores) + "\n" +
-                ", sinopse: " + sinopse + "\n" +
-                ", idiomas: " + Arrays.toString(idiomas) + "\n" +
-                ", paises: " + Arrays.toString(paises) + "\n" +
-                ", premios: " + premios + "\n" +
-                ", poster: " + poster + "\n" +
-                ", metascore: " + metascore + "\n" +
-                ", avaliacaoImdb: " + avaliacaoImdb + "\n" +
-                ", votosImdb: " + votosImdb + "\n" +
-                ", idImdb: " + idImdb + "\n" +
-                ", tipo: " + tipo + "\n" +
-                ", faturamento: " + faturamento + "\n";
+        return  "Título: " + titulo + "\n" +
+                "Ano Lancamento: " + anoLancamento + "\n" +
+                "Classificação Indicativa: " + classificacaoIndicativa + "\n" +
+                "Data Lancamento: " + Arrays.toString(dataLancamento) + "\n" +
+                "Duração: " + duracaoEpisodio + " minutos" + "\n" +
+                "Gêneros: " + generos + "\n" +
+                "Diretores: " + Arrays.toString(diretores) + "\n" +
+                "Roteiristas: " + Arrays.toString(roteiristas) + "\n" +
+                "Atores: " + Arrays.toString(atores) + "\n" +
+                "Sinopse: " + sinopse + "\n" +
+                "Idiomas: " + Arrays.toString(idiomas) + "\n" +
+                "Países: " + Arrays.toString(paises) + "\n" +
+                "Prêmios: " + premios + "\n" +
+                "Poster: " + poster + "\n" +
+                "Metascore: " + metascore + "\n" +
+                "Avaliação Imdb: " + avaliacaoImdb + "\n" +
+                "Cotos Imdb: " + votosImdb + "\n" +
+                "Id Imdb: " + idImdb + "\n" +
+                "Faturamento: " + faturamento + "\n";
     }
 
     @Override
