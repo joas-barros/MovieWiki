@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.Comparator;
+
 public class Playground {
     public static void main(String[] args) {
         Filme[] filmes = new Filme[5];
@@ -10,7 +12,14 @@ public class Playground {
         filmes[4] = new Filme("Filme 5", 2016, "Diretor 5");
 
         Sorting<Filme> sorting = new Sorting<>();
-        sorting.quickSort(filmes);
+        sorting.quickSort(filmes, Comparator.comparingInt(Filme::getAno));
+
+        for (Filme filme : filmes) {
+            System.out.println(filme);
+        }
+
+        System.out.println("====================================");
+        sorting.quickSort(filmes, Comparator.comparing(Filme::getDiretor));
 
         for (Filme filme : filmes) {
             System.out.println(filme);
