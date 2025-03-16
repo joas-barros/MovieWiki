@@ -226,4 +226,28 @@ public class DoubleList<T> implements MyListInterface<T>{
     public boolean isEmpty() {
         return head == null && tail == null;
     }
-}
+
+    @Override
+    public String toString() {
+        if (head == null) {
+            return "[]";
+        }
+            StringBuffer sb = new StringBuffer();
+            sb.append("[");
+
+            Node p = head;
+            while (p != null){
+                sb.append(p.data);
+                if (p.next != null){
+                    sb.append(", ");
+                }
+
+                p = p.next;
+            }
+
+            sb.append("]");
+
+            return sb.toString();
+        }
+    }
+

@@ -1,5 +1,7 @@
 package ufersa.omdbapi.model;
 
+import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +22,16 @@ public enum Categoria {
         this.categoriaOMDB = categoriaOMDB;
     }
 
-    public static List<Categoria> fromString(String texto) {
+    public static DoubleList<Categoria> fromString(String texto) {
         String[] generos = texto.replace(" ", "").split(",");
-        List<Categoria> retorno = new ArrayList<Categoria>();
+
+        DoubleList<Categoria> retorno = new DoubleList<>();
 
         try {
             for (String nome : generos) {
                 for (Categoria categoria : Categoria.values()) {
                     if (categoria.categoriaOMDB.equalsIgnoreCase(nome)) {
-                        retorno.add(categoria);
+                        retorno.addLast(categoria);
                         break;
                     }
                 }

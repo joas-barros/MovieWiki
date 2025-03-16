@@ -1,5 +1,6 @@
 package ufersa.omdbapi.model;
 
+import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
 import ufersa.omdbapi.service.Buscar;
 
 import java.util.*;
@@ -11,7 +12,7 @@ public class Serie {
     private String classificacaoIndicativa;
     private String[] dataLancamento;
     private Integer duracaoEpisodio;
-    private List<Categoria> generos;
+    private DoubleList<Categoria> generos;
     private String[] diretores;
     private String[] roteiristas;
     private String[] atores;
@@ -25,7 +26,7 @@ public class Serie {
     private String idImdb;
     private String tipo;
     private Integer quantidadeTemporadas;
-    private List<Episodio> episodios;
+    private DoubleList<Episodio> episodios = new DoubleList<>();
     private final Buscar bs = new Buscar();
 
     public Serie(RecordSerie serie) {
@@ -54,7 +55,7 @@ public class Serie {
         this.idImdb = serie.idImdb();
         this.tipo = serie.tipo();
         this.quantidadeTemporadas = Integer.valueOf(serie.quantidadeTemporadas());
-        this.episodios = bs.buscarEpisodio(titulo, quantidadeTemporadas);
+        setEpisodios(bs.buscarEpisodio(titulo, quantidadeTemporadas));
     }
 
     public String getTitulo() {
@@ -105,11 +106,11 @@ public class Serie {
         this.duracaoEpisodio = duracaoEpisodio;
     }
 
-    public List<Categoria> getGeneros() {
+    public DoubleList<Categoria> getGeneros() {
         return generos;
     }
 
-    public void setGeneros(List<Categoria> generos) {
+    public void setGeneros(DoubleList<Categoria> generos) {
         this.generos = generos;
     }
 
@@ -217,12 +218,12 @@ public class Serie {
         this.quantidadeTemporadas = quantidadeTemporadas;
     }
 
-    public List<Episodio> getEpisodios() {
+    public DoubleList<Episodio> getEpisodios() {
         return episodios;
     }
 
-    public void setEpisodios(List<Episodio> episodios) {
-        this.episodios = episodios;
+    public void setEpisodios(List<Episodio> episodiosA) {
+        episodiosA.forEach(e-> episodios.addLast(e));
     }
 
     @Override

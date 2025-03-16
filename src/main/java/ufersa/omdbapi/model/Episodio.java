@@ -1,5 +1,7 @@
 package ufersa.omdbapi.model;
 
+import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
+
 import java.util.*;
 
 public class Episodio {
@@ -10,13 +12,13 @@ public class Episodio {
     private Integer numeroTemporada;
     private Integer numeroEpisodio;
     private Integer duracao;
-    private List<Categoria> generos;
-    private List<String> diretores;
+    private DoubleList<Categoria> generos;
+    private String[] diretores;
     private String[] roteiristas;
     private String[] atores;
     private String sinopse;
-    private List<String> idiomas;
-    private List<String> paises;
+    private String[] idiomas;
+    private String[] paises;
     private String poster;
     private Double avaliacaoImdb;
     private Integer votosImdb;
@@ -32,13 +34,13 @@ public class Episodio {
         this.numeroTemporada = episodio.numeroTemporada().equals("N/A") ? null : episodio.numeroTemporada();
         this.numeroEpisodio = episodio.numeroEpisodio().equals("N/A") ? null : episodio.numeroEpisodio();
         this.duracao = episodio.tempoExibicao().equals("N/A") ? null : Integer.valueOf(episodio.tempoExibicao().split(" ")[0]);
-        this.generos = episodio.genero().equals("N/A") ? null :  Categoria.fromString(episodio.genero());
-        this.diretores = episodio.diretor().equals("N/A") ? null : new ArrayList<>(List.of(episodio.diretor().replaceAll(" ","").split(",")));
-        this.roteiristas = episodio.roteirista().equals("N/A") ? null : episodio.roteirista().replaceAll(" ","").split(",");
+        this.generos = episodio.genero().equals("N/A") ? null : Categoria.fromString(episodio.genero());
+        this.diretores = episodio.diretor().equals("N/A") ? null : episodio.diretor().split(",");
+        this.roteiristas = episodio.roteirista().equals("N/A") ? null : episodio.roteirista().split(",");
         this.atores = episodio.ator().equals("N/A") ? null : episodio.ator().replaceAll(" ","").split(",");
         this.sinopse = episodio.sinopse().equals("N/A") ? null : episodio.sinopse();
-        this.idiomas = episodio.idioma().equals("N/A") ? null :  new ArrayList<>(Arrays.asList(episodio.idioma()));
-        this.paises = episodio.pais().equals("N/A") ? null : new ArrayList<>(Arrays.asList(episodio.pais()));
+        this.idiomas = episodio.idioma().equals("N/A") ? null :  episodio.idioma().replaceAll(" ", "").split(",");
+        this.paises = episodio.pais().equals("N/A") ? null : episodio.pais().split(",");
         this.poster = episodio.poster().equals("N/A") ? null : episodio.poster();
         this.avaliacaoImdb = episodio.avaliacaoImdb().equals("N/A") ? null : Double.valueOf(episodio.avaliacaoImdb());
         this.votosImdb = episodio.votosImdb().equals("N/A") ? null : Integer.valueOf(episodio.votosImdb());
@@ -95,19 +97,27 @@ public class Episodio {
         this.duracao = duracao;
     }
 
-    public List<Categoria> getGeneros() {
+    public DoubleList<Categoria> getGeneros() {
         return generos;
     }
 
-    public void setGeneros(List<Categoria> generos) {
+    public void setGeneros(DoubleList<Categoria> generos) {
         this.generos = generos;
     }
 
-    public List<String> getDiretores() {
+    public String[] getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public void setDataLancamento(String[] dataLancamento) {
+        this.dataLancamento = dataLancamento;
+    }
+
+    public String[] getDiretores() {
         return diretores;
     }
 
-    public void setDiretores(List<String> diretores) {
+    public void setDiretores(String[] diretores) {
         this.diretores = diretores;
     }
 
@@ -135,19 +145,19 @@ public class Episodio {
         this.sinopse = sinopse;
     }
 
-    public List<String> getIdiomas() {
+    public String[] getIdiomas() {
         return idiomas;
     }
 
-    public void setIdiomas(List<String> idiomas) {
+    public void setIdiomas(String[] idiomas) {
         this.idiomas = idiomas;
     }
 
-    public List<String> getPaises() {
+    public String[] getPaises() {
         return paises;
     }
 
-    public void setPaises(List<String> paises) {
+    public void setPaises(String[] paises) {
         this.paises = paises;
     }
 
@@ -208,12 +218,12 @@ public class Episodio {
                 ", numeroEpisodio: " + numeroEpisodio + "\n" +
                 ", duracao: " + duracao + " minutos" + "\n" +
                 ", generos: " + generos + "\n" +
-                ", diretores: " + diretores + "\n" +
+                ", diretores: " + Arrays.toString(diretores) + "\n" +
                 ", roteiristas: " + Arrays.toString(roteiristas) + "\n" +
                 ", atores: " + Arrays.toString(atores) + "\n" +
                 ", sinopse: " + sinopse + "\n" +
-                ", idiomas: " + idiomas + "\n" +
-                ", paises: " + paises + "\n" +
+                ", idiomas: " + Arrays.toString(idiomas) + "\n" +
+                ", paises: " + Arrays.toString(paises) + "\n" +
                 ", poster: " + poster + "\n" +
                 ", avaliacaoImdb: " + avaliacaoImdb + "\n" +
                 ", votosImdb: " + votosImdb + "\n" +

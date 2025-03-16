@@ -1,5 +1,7 @@
 package ufersa.omdbapi.model;
 
+import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
+
 import java.util.*;
 
 public class Filme {
@@ -8,7 +10,7 @@ public class Filme {
     private String classificacaoIndicativa;
     private String[] dataLancamento;
     private Integer duracaoEpisodio;
-    private List<Categoria> generos;
+    private DoubleList<Categoria> generos;
     private String[] diretores;
     private String[] roteiristas;
     private String[] atores;
@@ -23,7 +25,6 @@ public class Filme {
     private String idImdb;
     private String tipo;
     private String faturamento;
-    private List<Episodio> episodios;
 
     public Filme(RecordFilme filme) {
         this.titulo = filme.titulo();
@@ -91,11 +92,11 @@ public class Filme {
         this.duracaoEpisodio = duracaoEpisodio;
     }
 
-    public List<Categoria> getGeneros() {
+    public DoubleList<Categoria> getGeneros() {
         return generos;
     }
 
-    public void setGeneros(List<Categoria> generos) {
+    public void setGeneros(DoubleList<Categoria> generos) {
         this.generos = generos;
     }
 
