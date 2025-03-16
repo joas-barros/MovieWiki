@@ -2,7 +2,9 @@ package ufersa.omdbapi.dados.lista_encadeada;
 
 import ufersa.omdbapi.exceptions.MyException;
 
-public class DoubleList<T> implements MyListInterface<T>{
+import java.io.Serializable;
+
+public class DoubleList<T> implements MyListInterface<T>, Serializable {
 
     class Node {
         T data;
@@ -15,6 +17,8 @@ public class DoubleList<T> implements MyListInterface<T>{
             this.previous = null;
         }
     }
+
+    private static final long serialVersionUID = 1L;
 
     private Node head;
     private Node tail;
@@ -124,7 +128,6 @@ public class DoubleList<T> implements MyListInterface<T>{
         Node p = head;
         T elemento = null;
         if(head == tail){
-            System.out.println("Removendo unico elemento da lista");
             elemento = head.data;
             head = null;
             tail = null;

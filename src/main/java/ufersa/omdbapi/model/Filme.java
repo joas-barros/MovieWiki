@@ -2,9 +2,11 @@ package ufersa.omdbapi.model;
 
 import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Filme {
+public class Filme implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private Integer anoLancamento;
     private String classificacaoIndicativa;
