@@ -1,42 +1,21 @@
-titulo: Mad Max
-, anoLancamento: 1979
-, classificacaoIndicativa: R
-, dataLancamento: [21, Mar, 1980]
-, duracao: 88 minutos
-, generos: [Ação, Aventura, Ficção]
-, diretores: [George Miller]
-, roteiristas: [James McCausland,  George Miller,  Byron Kennedy]
-, atores: [Mel Gibson,  Joanne Samuel,  Hugh Keays-Byrne]
-, sinopse: In a self-destructing world, a vengeful Australian policeman sets out to stop a violent motorcycle gang.
-, idiomas: [English]
-, paises: [Australia]
-, premios: 6 wins & 8 nominations total
-, poster: https://m.media-amazon.com/images/M/MV5BMTM4Mjg5ODEzMV5BMl5BanBnXkFtZTcwMDc3NDk0NA@@._V1_SX300.jpg
-, metascore: 73
-, avaliacaoImdb: 6.8
-, votosImdb: 236449
-, idImdb: tt0079501
+titulo: Titanic
+, anoLancamento: 1997
+, classificacaoIndicativa: PG-13
+, dataLancamento: [19, Dec, 1997]
+, duracao: 194 minutos
+, generos: [Drama, Rromance]
+, diretores: [James Cameron]
+, roteiristas: [James Cameron]
+, atores: [Leonardo DiCaprio,  Kate Winslet,  Billy Zane]
+, sinopse: A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.
+, idiomas: [English,  Swedish,  Italian,  French]
+, paises: [United States,  Mexico]
+, premios: Won 11 Oscars. 126 wins & 83 nominations total
+, poster: https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg
+, metascore: 75
+, avaliacaoImdb: 7.9
+, votosImdb: 1322762
+, idImdb: tt0120338
 , tipo: movie
-, faturamento: $8,750,000
-
-titulo: Anora
-, anoLancamento: 2024
-, classificacaoIndicativa: R
-, dataLancamento: [08, Nov, 2024]
-, duracao: 139 minutos
-, generos: [Comédia, Drama, Rromance]
-, diretores: [Sean Baker]
-, roteiristas: [Sean Baker]
-, atores: [Mikey Madison,  Paul Weissman,  Yura Borisov]
-, sinopse: A young escort from Brooklyn meets and impulsively marries the son of a Russian oligarch. Once the news reaches Russia, her fairy tale is threatened as his parents set out for New York to get the marriage annulled.
-, idiomas: [English,  Russian,  Armenian]
-, paises: [United States]
-, premios: Won 5 Oscars. 144 wins & 267 nominations total
-, poster: https://m.media-amazon.com/images/M/MV5BYThiN2M0NTItODRmNC00NDhlLWFiYTgtMWM2YTEyYzI3ZTY1XkEyXkFqcGc@._V1_SX300.jpg
-, metascore: 91
-, avaliacaoImdb: 7.8
-, votosImdb: 122308
-, idImdb: tt28607951
-, tipo: movie
-, faturamento: $16,300,129
+, faturamento: $674,292,608
 

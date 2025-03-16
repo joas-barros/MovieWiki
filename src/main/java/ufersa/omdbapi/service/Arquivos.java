@@ -12,6 +12,8 @@ public class Arquivos {
     private static final String pathFilmeTexto = "src\\main\\java\\ufersa\\omdbapi\\archives\\arquivoTextoFilme.txt";
     private static final String pathSerieTexto = "src\\main\\java\\ufersa\\omdbapi\\archives\\arquivoTextoSerie.txt";
 
+    private static final String pathFilmeBinario = "src\\main\\java\\ufersa\\omdbapi\\archives\\arquivoBinarioFilme.dat";
+
 
     public void escreverFilmesTexto(MyQueueLinkedList<Filme> listaFilmes) {
 
@@ -41,25 +43,26 @@ public class Arquivos {
         }
     }
 
-    //public void escreverFilmeBinario(MyQueueLinkedList<Filme> listaFilmes) {
-    //    System.out.println(listaFilmes);
-    //    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(pathFilmeBinario))) {
-    //        oos.writeObject(listaFilmes);
-    //        System.out.println("Arquivo salvo com sucesso!");
-    //    } catch (IOException e) {
-    //        System.err.println("Erro ao escrever o arquivo binário" + e.getMessage());
-    //    }
-    //}
-    //
-    //public MyQueueLinkedList<Filme> lerFilmeBinario(){
-    //    MyQueueLinkedList<Filme> listaFilmes = new MyQueueLinkedList<>();
-    //
-    //    try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(pathFilmeBinario))){
-    //        listaFilmes = (MyQueueLinkedList<Filme>) ois.readObject();
-    //    } catch (IOException | ClassNotFoundException e) {
-    //        System.err.print("Erro ao ler arquivo binário " + e.getMessage());
-    //    }
-    //
-    //    return listaFilmes;
-    //}
+    public void escreverFilmeBinario(MyQueueLinkedList<Filme> listaFilmes) {
+        System.out.println(listaFilmes);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(pathFilmeBinario))) {
+            oos.writeObject(listaFilmes);
+            System.out.println("Arquivo salvo com sucesso!");
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever o arquivo binário" + e.getMessage());
+        }
+    }
+
+    public MyQueueLinkedList<Filme> lerFilmeBinario(){
+        MyQueueLinkedList<Filme> listaFilmes = new MyQueueLinkedList<>();
+
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(pathFilmeBinario))){
+            listaFilmes = (MyQueueLinkedList<Filme>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.print("Erro ao ler arquivo binário " + e.getMessage());
+        }
+
+        return listaFilmes;
+    }
 }

@@ -67,7 +67,7 @@ public class Principal {
             }
         }while(opcao != 6);
 
-        //manipularArquivos.escreverFilmeBinario(listaFilmes);
+        manipularArquivos.escreverFilmeBinario(listaFilmes);
 
         manipularArquivos.escreverFilmesTexto(listaFilmes);
         manipularArquivos.escreverSerieTexto(listaSeries);

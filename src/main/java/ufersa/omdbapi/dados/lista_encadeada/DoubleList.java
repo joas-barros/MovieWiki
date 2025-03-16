@@ -6,7 +6,8 @@ import java.io.Serializable;
 
 public class DoubleList<T> implements MyListInterface<T>, Serializable {
 
-    class Node {
+    class Node implements Serializable {
+        private static final long serialVersionUID = 1L;
         T data;
         Node next;
         Node previous;
