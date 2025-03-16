@@ -36,4 +36,9 @@ public class MyQueueLinkedList <T> implements QueueInterface<T>{
     public void show() {
         fila.show();
     }
+
+    @Override
+    public String toString() {
+        return "[" + fila + ']';
+    }
 }

@@ -55,7 +55,6 @@ public class Serie {
         this.idImdb = serie.idImdb();
         this.tipo = serie.tipo();
         this.quantidadeTemporadas = Integer.valueOf(serie.quantidadeTemporadas());
-        setEpisodios(bs.buscarEpisodio(titulo, quantidadeTemporadas));
     }
 
     public String getTitulo() {

@@ -44,7 +44,7 @@ public class Filme {
         this.paises = filme.paises().split(",");
         this.premios = filme.premios();
         this.poster = filme.poster();
-        this.metascore = OptionalInt.of(Integer.valueOf(filme.metascore())).orElse(-1);
+        this.metascore = filme.metascore().equals("N/A") ? null: Integer.valueOf(filme.metascore());
         this.avaliacaoImdb = OptionalDouble.of(Double.valueOf(filme.avaliacaoImdb())).orElse(-1);
         this.votosImdb = Integer.valueOf(filme.votosImdb().replaceAll(",", ""));
         this.idImdb = filme.idImdb();

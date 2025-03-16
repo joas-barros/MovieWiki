@@ -1,7 +1,5 @@
 package ufersa.omdbapi.service;
 
-import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
-import ufersa.omdbapi.exceptions.RecordTemporadaException;
 import ufersa.omdbapi.model.*;
 import ufersa.omdbapi.principal.Principal;
 
@@ -15,27 +13,33 @@ public class Buscar {
     private static ConverteDados converteDados = new ConverteDados();
     private static StringBuilder sb = new StringBuilder();
 
-    public void buscarSerie(String nomeSerie) {
+    public Filme buscarFilme(String nomeFilme) {
+
+        String json = consumoApi.getDados(Principal.ENDERECO + nomeFilme.replace(" ", "+") + Principal.API_KEY);
+
+        RecordFilme dadosFilme = converteDados.getDados(json, RecordFilme.class);
+
+        return new Filme(dadosFilme);
+    }
+
+    public Serie buscarSerie(String nomeSerie) {
+        String json = consumoApi.getDados(Principal.ENDERECO + nomeSerie.replace(" ", "+") + Principal.API_KEY);
+
+        RecordSerie dadosSerie = converteDados.getDados(json, RecordSerie.class);
+
+        return new Serie(dadosSerie);
+    }
+
+    public Serie buscarEpisodiosDaSerie(String nomeSerie) {
         String json = consumoApi.getDados(Principal.ENDERECO + nomeSerie.replace(" ", "+") + Principal.API_KEY);
 
         RecordSerie dadosSerie = converteDados.getDados(json, RecordSerie.class);
 
         Serie novaSerie = new Serie(dadosSerie);
 
-        System.out.println(novaSerie);
+        novaSerie.setEpisodios(buscarEpisodio(novaSerie.getTitulo(), novaSerie.getQuantidadeTemporadas()));
 
-        System.out.println(novaSerie.getEpisodios());
-    }
-
-    public void buscarFilme(String nomeFilme) {
-
-        String json = consumoApi.getDados(Principal.ENDERECO + nomeFilme.replace(" ", "+") + Principal.API_KEY);
-
-        RecordFilme dadosFilme = converteDados.getDados(json, RecordFilme.class);
-
-        Filme novoFilme = new Filme(dadosFilme);
-
-        System.out.println(novoFilme);
+        return novaSerie;
     }
 
     public List<Episodio> buscarEpisodio(String nome, int totalTemporadas) {
