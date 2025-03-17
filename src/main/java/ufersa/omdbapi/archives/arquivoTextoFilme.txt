@@ -1,0 +1,20 @@
+Título: Mad Max
+Ano Lancamento: 1979
+Classificação Indicativa: R
+Data Lancamento: [21, Mar, 1980]
+Duração: 88 minutos
+Gêneros: [Ação, Aventura, Ficção]
+Diretores: [George Miller]
+Roteiristas: [James McCausland,  George Miller,  Byron Kennedy]
+Atores: [Mel Gibson,  Joanne Samuel,  Hugh Keays-Byrne]
+Sinopse: In a self-destructing world, a vengeful Australian policeman sets out to stop a violent motorcycle gang.
+Idiomas: [English]
+Países: [Australia]
+Prêmios: 6 wins & 8 nominations total
+Poster: https://m.media-amazon.com/images/M/MV5BMTM4Mjg5ODEzMV5BMl5BanBnXkFtZTcwMDc3NDk0NA@@._V1_SX300.jpg
+Metascore: 73
+Avaliação Imdb: 6.8
+Cotos Imdb: 236449
+Id Imdb: tt0079501
+Faturamento: $8,750,000
+

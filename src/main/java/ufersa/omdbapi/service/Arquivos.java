@@ -80,7 +80,7 @@ public class Arquivos {
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(pathSerieBinario))){
             listaSerie = (MyQueueLinkedList<Serie>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.err.print("Erro ao ler arquivo binário série" + e.getMessage() + "\n");
+            System.err.print("Erro ao ler arquivo binário série " + e.getMessage() + "\n");
         }
 
         return listaSerie;

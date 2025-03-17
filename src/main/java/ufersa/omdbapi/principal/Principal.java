@@ -38,7 +38,8 @@ public class Principal {
                 6- Remover Filme
                 7- Remover Serie
                 8- Buscar Filme na lista
-                9- sair
+                9- Buscar Serie na lista
+                10- sair
                 """;
 
         int opcao;
@@ -87,7 +88,7 @@ public class Principal {
                         listaSeries.remove();
                     break;
                 case 8:
-                    checarLista(listaFilmes);
+                    checarListaFilmes(listaFilmes);
                     break;
                 default:
                     System.out.println("Saindo...");
@@ -147,7 +148,7 @@ public class Principal {
         listaSeries.show();
     }
 
-    private void checarLista(MyQueueLinkedList<Filme> listaFilmes) {
+    private void checarListaFilmes(MyQueueLinkedList<Filme> listaFilmes) {
 
         System.out.print("Digite um filme para buscar na lista: ");
         String leitura = scanner.nextLine();
@@ -158,22 +159,21 @@ public class Principal {
 
         DoubleList<Filme> f = new DoubleList<>();
 
-        while(!filmes.isEmpty()) {
+        while (!filmes.isEmpty()) {
             f.addLast(filmes.remove());
         }
 
         Filme[] eps = new Filme[f.getSize()];
 
-        for(int i = 0; i < f.getSize(); i++) {
+        for (int i = 0; i < f.getSize(); i++) {
             eps[i] = f.removeFirst();
         }
 
         int resposta = search.binarySearch(eps, busca);
 
-        if(resposta == -1) {
+        if (resposta == -1) {
             System.out.println("Filme não está na lista.");
-        }
-        else {
+        } else {
             System.out.println("Filme já adicionado.");
         }
 

@@ -2,11 +2,13 @@ package ufersa.omdbapi.service;
 
 import ufersa.omdbapi.model.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Buscar {
+public class Buscar implements Serializable {
+    private final static long serialVersionUID = 1L;
     public static final String ENDERECO = "https://www.omdbapi.com/?t=";
     public static final String API_KEY = "&apikey=bc5081ad";
     private static Scanner scanner = new Scanner(System.in);
