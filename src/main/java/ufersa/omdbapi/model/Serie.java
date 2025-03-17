@@ -249,4 +249,16 @@ public class Serie implements Serializable {
                 "Votos Imdb: " + votosImdb + "\n" +
                 "Id Imdb: " + idImdb +  "\n";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Serie serie)) return false;
+        return Objects.equals(getTitulo(), serie.getTitulo());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitulo());
+    }
 }

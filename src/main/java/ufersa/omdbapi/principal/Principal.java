@@ -39,7 +39,9 @@ public class Principal {
                 7- Remover Serie
                 8- Buscar Filme na lista
                 9- Buscar Serie na lista
-                10- sair
+                10 - Proximo filme do catalogo
+                11 - Proxima Serie do catalogo
+                12- sair
                 """;
 
         int opcao;
@@ -90,15 +92,61 @@ public class Principal {
                 case 8:
                     checarListaFilmes(listaFilmes);
                     break;
+                    case 9:
+                    checarListaSeries(listaSeries);
+                    break;
+                case 10:
+                    checarProximoFilme(listaFilmes);
+                    break;
+                case 11:
+                    checarProximaSerie(listaSeries);
+                    break;
                 default:
                     System.out.println("Saindo...");
             }
-        }while(opcao != 9);
+        }while(opcao != 12);
 
         manipularArquivos.escreverSerieBinario(listaSeries);
         manipularArquivos.escreverSerieTexto(listaSeries);
         manipularArquivos.escreverFilmeBinario(listaFilmes);
         manipularArquivos.escreverFilmesTexto(listaFilmes);
+    }
+
+    private void checarProximaSerie(MyQueueLinkedList<Serie> listaSeries) {
+        System.out.println("Proxima serie: " + listaSeries.peek().getTitulo());
+    }
+
+    private void checarProximoFilme(MyQueueLinkedList<Filme> listaFilmes) {
+        System.out.println("Proximo filme: " + listaFilmes.peek().getTitulo());
+    }
+
+    private void checarListaSeries(MyQueueLinkedList<Serie> listaSeries) {
+        System.out.print("Digite um serie para buscar na lista: ");
+        String leitura = scanner.nextLine();
+
+        Serie busca = bs.buscarSerie(leitura);
+
+        MyQueueLinkedList<Serie> series = listaSeries;
+
+        DoubleList<Serie> s = new DoubleList<>();
+
+        while (!series.isEmpty()) {
+            s.addLast(series.remove());
+        }
+
+        Serie[] eps = new Serie[s.getSize()];
+
+        for (int i = 0; i < s.getSize(); i++) {
+            eps[i] = s.removeFirst();
+        }
+
+        int resposta = search.linearSearch(eps, busca);
+
+        if (resposta == -1) {
+            System.out.println("Serie não está na lista.");
+        } else {
+            System.out.println("Serie está na lista. Na posição: " + resposta);
+        }
     }
 
     private Filme exibirFilme(MyQueueLinkedList listaFilmes) {
@@ -174,7 +222,7 @@ public class Principal {
         if (resposta == -1) {
             System.out.println("Filme não está na lista.");
         } else {
-            System.out.println("Filme já adicionado.");
+            System.out.println("Filme esta na lista. Na posição: " + resposta);
         }
 
     }
