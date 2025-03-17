@@ -1,0 +1,60 @@
+Título: Never Have I Ever
+Ano Lançamento: 2020
+Ano Final: 2023
+Classificação Indicativa: TV-14
+Data Lançamento: [27, Apr, 2020]
+Duração Episodio: 30 minutos
+Quantidade Temporadas: 4
+Gêneros: [Comédia, Drama]
+Diretores: null
+Roteiristas: [Lang Fisher,  Mindy Kaling]
+Atores: [Maitreyi Ramakrishnan,  Poorna Jagannathan,  Darren Barnet]
+Sinopse: The complicated life of a first-generation Indian-American teenage girl, inspired by Mindy Kaling's own childhood.
+Idiomas: [English]
+Países: [United States]
+Prêmios: 8 wins & 22 nominations total
+Poster: https://m.media-amazon.com/images/M/MV5BNzdhOGVjMTQtOTQ0Yi00ZWNjLTk2MjMtMWMzODczNWNiNmM3XkEyXkFqcGc@._V1_SX300.jpg
+Avaliação Imdb: 7.8
+Votos Imdb: 85329
+Id Imdb: tt10062292
+
+Título: Breaking Bad
+Ano Lançamento: 2008
+Ano Final: 2013
+Classificação Indicativa: TV-MA
+Data Lançamento: [20, Jan, 2008]
+Duração Episodio: 49 minutos
+Quantidade Temporadas: 5
+Gêneros: [Crime, Drama, Ssuspense]
+Diretores: null
+Roteiristas: [Vince Gilligan]
+Atores: [Bryan Cranston,  Aaron Paul,  Anna Gunn]
+Sinopse: A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student to secure his family's future.
+Idiomas: [English,  Spanish]
+Países: [United States]
+Prêmios: Won 16 Primetime Emmys. 169 wins & 269 nominations total
+Poster: https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_SX300.jpg
+Avaliação Imdb: 9.5
+Votos Imdb: 2283453
+Id Imdb: tt0903747
+
+Título: House
+Ano Lançamento: 2004
+Ano Final: 2012
+Classificação Indicativa: TV-14
+Data Lançamento: [16, Nov, 2004]
+Duração Episodio: 44 minutos
+Quantidade Temporadas: 8
+Gêneros: [Drama]
+Diretores: null
+Roteiristas: [David Shore]
+Atores: [Hugh Laurie,  Omar Epps,  Robert Sean Leonard]
+Sinopse: Using a crack team of doctors and his wits, an antisocial maverick doctor specializing in diagnostic medicine does whatever it takes to solve puzzling cases that come his way.
+Idiomas: [English]
+Países: [United States]
+Prêmios: Won 5 Primetime Emmys. 58 wins & 140 nominations total
+Poster: https://m.media-amazon.com/images/M/MV5BMjgxYjAwNmMtYTAwZC00YmQxLWJlOTMtMWM0NGJmNDE0YmI2XkEyXkFqcGc@._V1_SX300.jpg
+Avaliação Imdb: 8.7
+Votos Imdb: 545738
+Id Imdb: tt0412142
+

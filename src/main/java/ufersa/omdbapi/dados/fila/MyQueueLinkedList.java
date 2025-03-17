@@ -46,4 +46,8 @@ public class MyQueueLinkedList <T> implements QueueInterface<T>, Serializable {
     public String toString() {
         return "[" + fila + ']';
     }
+
+    public T[] toArray(T[] a) {
+        return fila.toArray(a);
+    }
 }

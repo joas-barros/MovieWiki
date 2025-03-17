@@ -18,4 +18,6 @@ public interface MyListInterface <E>{
     void showReverse();
 
     boolean isEmpty();
+
+    E[] toArray(E[] a);
 }

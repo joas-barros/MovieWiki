@@ -126,19 +126,7 @@ public class Principal {
 
         Serie busca = bs.buscarSerie(leitura);
 
-        MyQueueLinkedList<Serie> series = listaSeries;
-
-        DoubleList<Serie> s = new DoubleList<>();
-
-        while (!series.isEmpty()) {
-            s.addLast(series.remove());
-        }
-
-        Serie[] eps = new Serie[s.getSize()];
-
-        for (int i = 0; i < s.getSize(); i++) {
-            eps[i] = s.removeFirst();
-        }
+        Serie[] eps = listaSeries.toArray(new Serie[0]);
 
         int resposta = search.linearSearch(eps, busca);
 
@@ -203,21 +191,9 @@ public class Principal {
 
         Filme busca = bs.buscarFilme(leitura);
 
-        MyQueueLinkedList<Filme> filmes = listaFilmes;
+        Filme[] eps = listaFilmes.toArray(new Filme[0]);
 
-        DoubleList<Filme> f = new DoubleList<>();
-
-        while (!filmes.isEmpty()) {
-            f.addLast(filmes.remove());
-        }
-
-        Filme[] eps = new Filme[f.getSize()];
-
-        for (int i = 0; i < f.getSize(); i++) {
-            eps[i] = f.removeFirst();
-        }
-
-        int resposta = search.binarySearch(eps, busca);
+        int resposta = search.linearSearch(eps, busca);
 
         if (resposta == -1) {
             System.out.println("Filme não está na lista.");

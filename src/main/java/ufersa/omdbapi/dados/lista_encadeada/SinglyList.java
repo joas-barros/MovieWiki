@@ -3,6 +3,8 @@ package ufersa.omdbapi.dados.lista_encadeada;
 
 import ufersa.omdbapi.exceptions.MyException;
 
+import java.lang.reflect.Array;
+
 public class SinglyList <T> implements MyListInterface<T>{
 
     class Node {
@@ -225,6 +227,24 @@ public class SinglyList <T> implements MyListInterface<T>{
     public boolean isEmpty(){
         return head == null && tail == null;
     }
+
+    @Override
+    public T[] toArray(T[] a) {
+        if (a.length < size) {
+            // Creates a new array of the correct type
+            a = (T[]) Array.newInstance(a.getClass().getComponentType(), size);
+        }
+
+        Node p = head;
+        int i = 0;
+        while (p != null) {
+            a[i] = p.data;
+            p = p.next;
+            i++;
+        }
+        return a;
+    }
+
 
     @Override
     public void showReverse() {
