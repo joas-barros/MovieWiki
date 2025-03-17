@@ -10,7 +10,6 @@ import ufersa.omdbapi.service.front.SerieService;
 
 import java.util.List;
 
-
 @RestController
 public class SerieController {
    private final static SerieService ss = new SerieService();

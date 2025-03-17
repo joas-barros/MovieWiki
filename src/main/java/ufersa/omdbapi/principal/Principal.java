@@ -1,8 +1,7 @@
 package ufersa.omdbapi.principal;
 
 import ufersa.omdbapi.dados.fila.MyQueueLinkedList;
-import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
-import ufersa.omdbapi.model.Episodio;
+
 import ufersa.omdbapi.model.Filme;
 import ufersa.omdbapi.model.Serie;
 import ufersa.omdbapi.search.Search;
@@ -10,8 +9,6 @@ import ufersa.omdbapi.service.api.Buscar;
 import ufersa.omdbapi.service.Arquivos;
 import ufersa.omdbapi.sorting.Sorting;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Principal {
