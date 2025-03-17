@@ -14,7 +14,6 @@ public class Buscar implements Serializable {
     private static Scanner scanner = new Scanner(System.in);
     private static ConsumoApi consumoApi = new ConsumoApi();
     private static ConverteDados converteDados = new ConverteDados();
-    private static StringBuilder sb = new StringBuilder();
 
     public Filme buscarFilme(String nomeFilme) {
 
@@ -63,11 +62,11 @@ public class Buscar implements Serializable {
         temporadas.forEach(t-> t.episodios()
                 .stream().filter(e-> e.ep() >0)
                 .forEach(e->{
-                String j = consumoApi.getDados("https://www.omdbapi.com/?i=" + e.id() + "&apikey=bc5081ad");
-                RecordEpisodio rE = converteDados.getDados(j, RecordEpisodio.class);
-                Episodio novoEp = new Episodio(rE);
-                episodios.add(novoEp);
-        }));
+                    String j = consumoApi.getDados("https://www.omdbapi.com/?i=" + e.id() + "&apikey=bc5081ad");
+                    RecordEpisodio rE = converteDados.getDados(j, RecordEpisodio.class);
+                    Episodio novoEp = new Episodio(rE);
+                    episodios.add(novoEp);
+                }));
 
         return episodios;
     }

@@ -2,22 +2,25 @@ package ufersa.omdbapi.model;
 
 import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Episodio {
+public class Episodio implements Comparable<Episodio>, Serializable {
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private Integer anoLancamento;
     private String classificacaoIndicativa;
+    private String[] dataLancamento;
     private Integer numeroTemporada;
     private Integer numeroEpisodio;
     private Integer duracao;
     private DoubleList<Categoria> generos;
-    private List<String> diretores;
+    private String[] diretores;
     private String[] roteiristas;
     private String[] atores;
     private String sinopse;
-    private List<String> idiomas;
-    private List<String> paises;
+    private String[] idiomas;
+    private String[] paises;
     private String poster;
     private Double avaliacaoImdb;
     private Integer votosImdb;
@@ -25,26 +28,28 @@ public class Episodio {
     private String idSerie;
     private String tipo;
 
+
     public Episodio(RecordEpisodio episodio) {
-        this.titulo = episodio.titulo();
-        this.anoLancamento = episodio.anoLancamento();
-        this.classificacaoIndicativa = episodio.classificacaoIndicativa();
-        this.numeroTemporada = episodio.numeroTemporada();
-        this.numeroEpisodio = episodio.numeroEpisodio();
-        this.duracao = OptionalInt.of(Integer.valueOf(episodio.tempoExibicao().split(" ")[0])).orElse(-1);
-        this.generos = Categoria.fromString(episodio.genero());
-        this.diretores = new ArrayList<>(List.of(episodio.diretor().replaceAll(" ","").split(",")));
-        this.roteiristas = episodio.roteirista().replaceAll(" ","").split(",");
-        this.atores = episodio.ator().replaceAll(" ","").split(",");
-        this.sinopse = episodio.sinopse();
-        this.idiomas = new ArrayList<>(Arrays.asList(episodio.idioma()));
-        this.paises = new ArrayList<>(Arrays.asList(episodio.pais()));
-        this.poster = episodio.poster();
-        this.avaliacaoImdb = episodio.avaliacaoImdb();
-        this.votosImdb = episodio.votosImdb();
-        this.imdbId = episodio.idImdb();
-        this.idSerie = episodio.idSerie();
-        this.tipo = episodio.tipo();
+        this.titulo = episodio.titulo().equals("N/A") ? null : episodio.titulo();
+        this.anoLancamento = episodio.anoLancamento().equals("N/A") ? null : episodio.anoLancamento();
+        this.classificacaoIndicativa = episodio.classificacaoIndicativa().equals("N/A") ? null : episodio.classificacaoIndicativa();
+        this.dataLancamento = episodio.anoLancamento().equals("N/A") ? null : episodio.dataLancamento().replaceAll(" ", "").split(",");
+        this.numeroTemporada = episodio.numeroTemporada().equals("N/A") ? null : episodio.numeroTemporada();
+        this.numeroEpisodio = episodio.numeroEpisodio().equals("N/A") ? null : episodio.numeroEpisodio();
+        this.duracao = episodio.tempoExibicao().equals("N/A") ? null : Integer.valueOf(episodio.tempoExibicao().split(" ")[0]);
+        this.generos = episodio.genero().equals("N/A") ? null : Categoria.fromString(episodio.genero());
+        this.diretores = episodio.diretor().equals("N/A") ? null : episodio.diretor().split(",");
+        this.roteiristas = episodio.roteirista().equals("N/A") ? null : episodio.roteirista().split(",");
+        this.atores = episodio.ator().equals("N/A") ? null : episodio.ator().replaceAll(" ", "").split(",");
+        this.sinopse = episodio.sinopse().equals("N/A") ? null : episodio.sinopse();
+        this.idiomas = episodio.idioma().equals("N/A") ? null : episodio.idioma().replaceAll(" ", "").split(",");
+        this.paises = episodio.pais().equals("N/A") ? null : episodio.pais().split(",");
+        this.poster = episodio.poster().equals("N/A") ? null : episodio.poster();
+        this.avaliacaoImdb = episodio.avaliacaoImdb().equals("N/A") ? 0 : Double.valueOf(episodio.avaliacaoImdb());
+        this.votosImdb = episodio.votosImdb().equals("N/A") ? null : Integer.valueOf(episodio.votosImdb());
+        this.imdbId = episodio.idImdb().equals("N/A") ? null : episodio.idImdb();
+        this.idSerie = episodio.idSerie().equals("N/A") ? null : episodio.idSerie();
+        this.tipo = episodio.tipo().equals("N/A") ? null : episodio.tipo();
     }
 
     public String getTitulo() {
@@ -103,11 +108,19 @@ public class Episodio {
         this.generos = generos;
     }
 
-    public List<String> getDiretores() {
+    public String[] getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public void setDataLancamento(String[] dataLancamento) {
+        this.dataLancamento = dataLancamento;
+    }
+
+    public String[] getDiretores() {
         return diretores;
     }
 
-    public void setDiretores(List<String> diretores) {
+    public void setDiretores(String[] diretores) {
         this.diretores = diretores;
     }
 
@@ -135,19 +148,19 @@ public class Episodio {
         this.sinopse = sinopse;
     }
 
-    public List<String> getIdiomas() {
+    public String[] getIdiomas() {
         return idiomas;
     }
 
-    public void setIdiomas(List<String> idiomas) {
+    public void setIdiomas(String[] idiomas) {
         this.idiomas = idiomas;
     }
 
-    public List<String> getPaises() {
+    public String[] getPaises() {
         return paises;
     }
 
-    public void setPaises(List<String> paises) {
+    public void setPaises(String[] paises) {
         this.paises = paises;
     }
 
@@ -201,25 +214,24 @@ public class Episodio {
 
     @Override
     public String toString() {
-        return  "titulo: " + titulo + "\n" +
-                ", anoLancamento: " + anoLancamento + "\n" +
-                ", classificacaoIndicativa: " + classificacaoIndicativa + "\n" +
-                ", numeroTemporada: " + numeroTemporada + "\n" +
-                ", numeroEpisodio: " + numeroEpisodio + "\n" +
-                ", duracao: " + duracao + " minutos" + "\n" +
-                ", generos: " + generos + "\n" +
-                ", diretores: " + diretores + "\n" +
-                ", roteiristas: " + Arrays.toString(roteiristas) + "\n" +
-                ", atores: " + Arrays.toString(atores) + "\n" +
-                ", sinopse: " + sinopse + "\n" +
-                ", idiomas: " + idiomas + "\n" +
-                ", paises: " + paises + "\n" +
-                ", poster: " + poster + "\n" +
-                ", avaliacaoImdb: " + avaliacaoImdb + "\n" +
-                ", votosImdb: " + votosImdb + "\n" +
-                ", imdbId: " + imdbId + "\n" +
-                ", idSerie: " + idSerie + "\n" +
-                ", tipo: " + tipo + "\n";
+        return "Título: " + titulo +
+                ", Ano Lançamento: " + anoLancamento +
+                ", Classificação Indicativa: " + classificacaoIndicativa +
+                ", Temporada: " + numeroTemporada +
+                ", Episódio: " + numeroEpisodio +
+                ", Duração: " + duracao + " minutos" +
+                ", Gêneros: " + generos +
+                ", Diretores: " + Arrays.toString(diretores) +
+                ", Roteiristas: " + Arrays.toString(roteiristas) +
+                ", Atores: " + Arrays.toString(atores) +
+                ", Sinopse: " + sinopse +
+                ", Idiomas: " + Arrays.toString(idiomas) +
+                ", Países: " + Arrays.toString(paises) +
+                ", Poster: " + poster +
+                ", Avaliação Imdb: " + avaliacaoImdb +
+                ", Votos Imdb: " + votosImdb +
+                ", Imdb Id: " + imdbId +
+                ", Id Serie: " + idSerie;
     }
 
     @Override
@@ -232,5 +244,10 @@ public class Episodio {
     @Override
     public int hashCode() {
         return Objects.hashCode(imdbId);
+    }
+
+    @Override
+    public int compareTo(Episodio o) {
+        return this.avaliacaoImdb.compareTo(o.avaliacaoImdb);
     }
 }

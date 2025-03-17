@@ -6,7 +6,7 @@ import ufersa.omdbapi.service.api.Buscar;
 import java.io.Serializable;
 import java.util.*;
 
-public class Serie implements Serializable {
+public class Serie implements Serializable, Comparable<Serie> {
     private static final long serialVersionUID = 1L;
     private String titulo;
     private Integer anoLancamento;
@@ -29,7 +29,6 @@ public class Serie implements Serializable {
     private String tipo;
     private Integer quantidadeTemporadas;
     private DoubleList<Episodio> episodios = new DoubleList<>();
-    private final Buscar bs = new Buscar();
 
     public Serie(RecordSerie serie) {
         this.titulo = serie.titulo();
@@ -42,7 +41,7 @@ public class Serie implements Serializable {
         if(serie.duracaoEpisodio().equalsIgnoreCase("N/A"))
             this.duracaoEpisodio = null;
         else
-            this.duracaoEpisodio = OptionalInt.of(Integer.valueOf(serie.duracaoEpisodio().split(" ")[0])).orElse(-1);
+            this.duracaoEpisodio = OptionalInt.of(Integer.valueOf(serie.duracaoEpisodio().split(" ")[0])).orElse(-0);
         this.generos = serie.genero().equals("N/A") ? null : Categoria.fromString(serie.genero());
         this.diretores = serie.diretor().equals("N/A") ? null : serie.diretor().split(",");
         this.roteiristas = serie.roteirista().split(",");
@@ -52,7 +51,7 @@ public class Serie implements Serializable {
         this.paises = serie.paises().equals("N/A") ? null : serie.paises().split(",");
         this.premios = serie.premios().equals("N/A") ? null : serie.premios();
         this.poster = serie.poster().equals("N/A") ? null : serie.poster();
-        this.avaliacaoImdb = OptionalDouble.of(Double.valueOf(serie.avaliacaoImdb())).orElse(-1);
+        this.avaliacaoImdb = OptionalDouble.of(Double.valueOf(serie.avaliacaoImdb())).orElse(-0);
         this.votosImdb = Integer.valueOf(serie.votosImdb().replaceAll(",", ""));
         this.idImdb = serie.idImdb();
         this.tipo = serie.tipo();
@@ -248,5 +247,10 @@ public class Serie implements Serializable {
                 "Avaliação Imdb: " + avaliacaoImdb + "\n" +
                 "Votos Imdb: " + votosImdb + "\n" +
                 "Id Imdb: " + idImdb +  "\n";
+    }
+
+    @Override
+    public int compareTo(Serie o) {
+        return this.getTitulo().compareTo(o.getTitulo());
     }
 }

@@ -5,6 +5,7 @@ import ufersa.omdbapi.dados.fila.MyQueueLinkedList;
 import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
 import ufersa.omdbapi.model.Episodio;
 import ufersa.omdbapi.model.Serie;
+import ufersa.omdbapi.search.Search;
 import ufersa.omdbapi.service.Arquivos;
 import ufersa.omdbapi.service.api.Buscar;
 import ufersa.omdbapi.sorting.Sorting;
@@ -18,14 +19,16 @@ public class SerieService {
     private static final Arquivos arquivos = new Arquivos();
     private static final Buscar bs = new Buscar();
     private static final Sorting sorting = new Sorting();
+    private static final Search search = new Search();
 
     //lê arquivo binário de filme e retorna a lista dos series
     public List<Serie> lerSeriesDoArquivoBinario(){
+
         MyQueueLinkedList<Serie> filaSerie = arquivos.lerSerieBinario();
 
         List<Serie> listaSerie = new ArrayList<>();
 
-        while(!listaSerie.isEmpty()){
+        while(!filaSerie.isEmpty()){
             listaSerie.add(filaSerie.remove());
         }
 
@@ -55,6 +58,23 @@ public class SerieService {
         arquivos.imprimirEpisodiosOrdenados(vetorEpisodios);
 
         return vetorEpisodios;
+    }
+
+    public int buscarSerieNaLista(String nomeSerie) {
+
+        List<Serie> series = lerSeriesDoArquivoBinario();
+
+        Serie s = bs.buscarSerie(nomeSerie);
+
+        return search.binarySearch(series.toArray(), s);
+    }
+
+    public void salvarSerieBinario(List<Serie> series) {
+        MyQueueLinkedList<Serie> filaSerie = new MyQueueLinkedList<>();
+
+        series.forEach(filaSerie::add);
+
+        arquivos.escreverSerieBinario(filaSerie);
     }
 
     //falta salvar a série no arquivo binário e em txt quando terminar o uso

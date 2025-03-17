@@ -4,7 +4,7 @@ import ufersa.omdbapi.dados.lista_encadeada.DoubleList;
 
 import java.util.*;
 
-public class Filme {
+public class Filme implements Comparable<Filme> {
     private String titulo;
     private Integer anoLancamento;
     private String classificacaoIndicativa;
@@ -25,7 +25,6 @@ public class Filme {
     private String idImdb;
     private String tipo;
     private String faturamento;
-    private List<Episodio> episodios;
 
     public Filme(RecordFilme filme) {
         this.titulo = filme.titulo();
@@ -247,5 +246,10 @@ public class Filme {
     @Override
     public int hashCode() {
         return Objects.hash(titulo, anoLancamento);
+    }
+
+    @Override
+    public int compareTo(Filme o) {
+        return this.titulo.compareTo(o.titulo);
     }
 }

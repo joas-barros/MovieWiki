@@ -7,8 +7,6 @@ import ufersa.omdbapi.model.Filme;
 import ufersa.omdbapi.model.Serie;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Arquivos {
 

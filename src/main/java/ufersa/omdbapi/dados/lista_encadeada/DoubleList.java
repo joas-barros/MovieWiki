@@ -2,9 +2,20 @@ package ufersa.omdbapi.dados.lista_encadeada;
 
 import ufersa.omdbapi.exceptions.MyException;
 
-public class DoubleList<T> implements MyListInterface<T>{
+import java.io.Serializable;
 
-    class Node {
+public class DoubleList<T> implements MyListInterface<T>, Serializable {
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    class Node implements Serializable {
+        private static final long serialVersionUID = 1L;
         T data;
         Node next;
         Node previous;
@@ -16,6 +27,8 @@ public class DoubleList<T> implements MyListInterface<T>{
         }
     }
 
+    private static final long serialVersionUID = 1L;
+
     private Node head;
     private Node tail;
     private int size;
@@ -24,10 +37,6 @@ public class DoubleList<T> implements MyListInterface<T>{
         head = null;
         tail = null;
         size = 0;
-    }
-
-    public int getSize(){
-        return size;
     }
 
     @Override
@@ -128,7 +137,6 @@ public class DoubleList<T> implements MyListInterface<T>{
         Node p = head;
         T elemento = null;
         if(head == tail){
-            System.out.println("Removendo unico elemento da lista");
             elemento = head.data;
             head = null;
             tail = null;
@@ -229,5 +237,28 @@ public class DoubleList<T> implements MyListInterface<T>{
     @Override
     public boolean isEmpty() {
         return head == null && tail == null;
+    }
+
+    @Override
+    public String toString() {
+        if (head == null) {
+            return "[]";
+        }
+        StringBuffer sb = new StringBuffer();
+        sb.append("[");
+
+        Node p = head;
+        while (p != null){
+            sb.append(p.data);
+            if (p.next != null){
+                sb.append(", ");
+            }
+
+            p = p.next;
+        }
+
+        sb.append("]");
+
+        return sb.toString();
     }
 }
