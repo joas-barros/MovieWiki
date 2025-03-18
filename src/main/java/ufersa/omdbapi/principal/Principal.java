@@ -81,13 +81,20 @@ public class Principal {
                     if(listaFilmes.isEmpty())
                         System.out.println("Lista vazia");
                     else
+                    {
+                        System.out.println("Removendo: " + listaFilmes.peek().getTitulo());
                         listaFilmes.remove();
+                    }
+                        
                     break;
                 case 7:
                     if(listaSeries.isEmpty())
                         System.out.println("Lista vazia");
                     else
+                    {
+                        System.out.println("Removendo: " + listaSeries.peek().getTitulo());
                         listaSeries.remove();
+                    }
                     break;
                 case 8:
                     checarListaFilmes(listaFilmes);
@@ -140,7 +147,13 @@ public class Principal {
     private Filme exibirFilme(MyQueueLinkedList listaFilmes) {
         System.out.print("Digite o nome do filme: ");
         String filme = scanner.nextLine();
-        System.out.println(bs.buscarFilme(filme));
+
+        Filme f = bs.buscarFilme(filme);
+
+        System.out.println("Nome: " + f.getTitulo() + ", Nota: " + f.getAvaliacaoImdb() 
+        + ", Lançado em: " + f.getAnoLancamento());
+        System.out.println("Sinopse: " + f.getSinopse());
+        System.out.println();
 
         return bs.buscarFilme(filme);
     }
@@ -148,7 +161,13 @@ public class Principal {
     private Serie exibirSerie() {
         System.out.print("Digite o nome do serie: ");
         String serie = scanner.nextLine();
-        System.out.println(bs.buscarSerie(serie));
+
+        Serie s = bs.buscarSerie(serie);
+
+        System.out.println("Nome: " + s.getTitulo() + ", Nota: " + s.getAvaliacaoImdb() 
+        + "Duração: " + s.getAnoLancamento() + "-" + s.getAnoFinal());
+        System.out.println("Sinopse: " + s.getSinopse());
+        System.out.println();
 
         return bs.buscarSerie(serie);
     }
@@ -156,32 +175,34 @@ public class Principal {
     private void listarEpisodiosSerie() {
         System.out.print("Digite o nome do serie: ");
         String serie = scanner.nextLine();
-
         Serie s = bs.buscarEpisodiosDaSerie(serie);
-
         DoubleList<Episodio> episodios = s.getEpisodios();
-
         int tam = episodios.getSize();
-
         Episodio[] eps = new Episodio[tam];
-
         for(int i = 0; i < tam; i++) {
             eps[i] = episodios.removeFirst();
         }
-
         sorting.quickSort(eps, Comparator.comparing(Episodio::getAvaliacaoImdb));
 
-        System.out.println(Arrays.toString(eps));
-
-        manipularArquivos.imprimirEpisodiosOrdenados(eps);
-    }
+        for(int i=0; i < tam;i++){
+            System.out.println("Episódio: " + eps[i].getTitulo()+ 
+            ", S" +eps[i].getNumeroTemporada() + "E" + eps[i].getNumeroEpisodio() + ", Lançado: " + eps[i].getDataLancamento() +
+            ", Nota: " + eps[i].getAvaliacaoImdb());
+        }
+        manipularArquivos.imprimirEpisodiosOrdenados(eps);}
 
     private void exibirFilaExibicaoFilmes(MyQueueLinkedList<Filme> listaFilmes) {
-        listaFilmes.show();
+        if(!listaFilmes.isEmpty())
+            listaFilmes.show();
+        else
+            System.out.println("Lista vazia");
     }
 
     private void exibirFilaExibicaoSeries(MyQueueLinkedList<Serie> listaSeries) {
-        listaSeries.show();
+        if(!listaSeries.isEmpty())
+            listaSeries.show();
+        else
+            System.out.println("Lista vazia");
     }
 
     private void checarListaFilmes(MyQueueLinkedList<Filme> listaFilmes) {
@@ -200,6 +221,5 @@ public class Principal {
         } else {
             System.out.println("Filme esta na lista. Na posição: " + resposta);
         }
-
     }
 }

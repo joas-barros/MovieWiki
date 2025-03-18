@@ -30,7 +30,7 @@ public class ConsumoApi {
                  return null;
              }
             if (response.body() == null) {
-                throw new RecordTemporadaException("");
+                System.err.println("");
             }
          }catch (IOException e){
              System.out.println("Erro de I/O ao fazer a requisição: " + e.getMessage());

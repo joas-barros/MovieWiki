@@ -8,6 +8,7 @@ import ufersa.omdbapi.model.Serie;
 
 import java.io.*;
 
+@SuppressWarnings("ALL")
 public class Arquivos {
 
     private static final String pathFilmeTexto = "src\\main\\java\\ufersa\\omdbapi\\archives\\arquivoTextoFilme.txt";
@@ -31,7 +32,6 @@ public class Arquivos {
     }
 
     public void escreverSerieTexto(MyQueueLinkedList<Serie> listaSerie) {
-
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(pathSerieTexto))) {
 
             while(!listaSerie.isEmpty()){
@@ -70,7 +70,6 @@ public class Arquivos {
         } catch (IOException | ClassNotFoundException e) {
             System.err.print("Erro ao ler arquivo binário filme " + e.getMessage() + "\n");
         }
-
         return listaFilmes;
     }
 
